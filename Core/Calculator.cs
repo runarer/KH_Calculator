@@ -4,41 +4,62 @@ public class Calculator
 {
     public int Add(int numberA, int numberB)
     {
-        throw new NotImplementedException();
+        checked
+        {
+            return numberA + numberB;
+        }
     }
 
     public double Add(double numberA, double numberB)
     {
-        throw new NotImplementedException();
+        double result = numberA + numberB;
+        if(Double.IsInfinity(result)) 
+            throw new OverflowException();
+        return result;
     }
 
     public int Sub(int numberA, int numberB)
     {
-        throw new NotImplementedException();
+        checked
+        {
+            return numberA - numberB;
+        }
     }
 
     public double Sub(double numberA, double numberB)
     {
-        throw new NotImplementedException();
+        double result = numberA - numberB;
+        if(Double.IsInfinity(result)) 
+            throw new OverflowException();
+        return result;
     }    
 
     public int Multi(int numberA, int numberB)
     {
-        throw new NotImplementedException();
+        checked
+        {
+            return numberA*numberB;
+        }
     }
 
     public double Multi(double numberA, double numberB)
     {
-        throw new NotImplementedException();
+        double result = numberA * numberB;
+        if(Double.IsInfinity(result)) 
+            throw new OverflowException();
+        return result;
     }    
 
     public int Div(int numberA, int numberB)
     {
-        throw new NotImplementedException();
+        return numberA / numberB;
     }
 
     public double Div(double numberA, double numberB)
     {
-        throw new NotImplementedException();
+        double result = numberA / numberB;
+        if(Double.IsInfinity(result) || Double.IsNaN(result))
+            throw new DivideByZeroException();
+        return result;
     }
 }
