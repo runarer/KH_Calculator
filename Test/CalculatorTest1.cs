@@ -61,7 +61,7 @@ public class CalculatorTest
     // Calculator.Sub()
     [Theory]
     [InlineData(0,0,0)]
-    [InlineData(3_445,76_441,-72_986)]
+    [InlineData(3_445,76_441,-72_996)]
     [InlineData(-12,-45,33)]
     public void TestCalculator_Sub_SubtractTwoInts_ReturnInt(int firstNumber, int secondNumber, int expect)
     {
