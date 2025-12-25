@@ -31,6 +31,28 @@ public class CalculatorTest
         Assert.Throws<OverflowException>(() => calculator.Add(minInt,createNegativeOverflow));
     }
 
+    [Fact]
+    public void TestCalculator_Add_AddsArrayOfInts_ReturnInt()
+    {
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,66,22,34];
+        int expect = 256;
+
+        int result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result);
+    }
+
+        [Fact]
+    public void TestCalculator_Add_AddsArrayOfBigInts_ExpectOverflowException()
+    {        
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,66,22,34,int.MaxValue];
+        
+        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+    }
+
+
     [Theory]
     [InlineData(0.0,0.0,0.0,15)]
     [InlineData(3.123122,6.345321,9.468443,6)]
@@ -55,6 +77,28 @@ public class CalculatorTest
         
         Assert.Throws<OverflowException>(() => calculator.Add(bigDouble,createPositiveOverflow));
         Assert.Throws<OverflowException>(() => calculator.Add(bigNegativeDouble,createNegativeOverflow));
+    }
+
+    [Fact]
+    public void TestCalculator_Add_AddsArrayOfDoubles_ReturnDouble()
+    {
+        Calculator calculator = new();
+        double[] numbers = [66.45663,22.44321,34.98764];
+        double expect = 123.88748;
+        int precision = 5;
+
+        double result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result,precision);
+    }
+
+    [Fact]
+    public void TestCalculator_Add_AddsArrayOfBigDoubles_ExpectOverflowException()
+    {        
+        Calculator calculator = new();
+        double[] numbers = [9.985e307,9.985e307,9.985e307];
+        
+        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
     }
 
 
