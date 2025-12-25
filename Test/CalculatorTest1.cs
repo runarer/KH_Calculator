@@ -145,7 +145,7 @@ public class CalculatorTest
     public void TestCalculator_Sub_SubtractsArrayOfBigInts_ExpectOverflowException()
     {        
         Calculator calculator = new();
-        int[] numbers = [23,45,66,66,22,34,int.MinValue];
+        int[] numbers = [int.MinValue,int.MinValue,int.MinValue];
         
         Assert.Throws<OverflowException>(() => calculator.Sub(numbers));
     }
@@ -208,7 +208,7 @@ public class CalculatorTest
         int[] numbers = [23,45,66,66,22];
         int expect = 99_186_120;
 
-        int result = calculator.Add(numbers);
+        int result = calculator.Multi(numbers);
 
         Assert.Equal(expect,result);
     }
@@ -219,7 +219,7 @@ public class CalculatorTest
         Calculator calculator = new();
         int[] numbers = [23,45,66,66,22,int.MaxValue];
         
-        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+        Assert.Throws<OverflowException>(() => calculator.Multi(numbers));
     }
 
 
@@ -255,7 +255,7 @@ public class CalculatorTest
         double expect = 52_184.06866;
         int precision = 5;
 
-        double result = calculator.Add(numbers);
+        double result = calculator.Multi(numbers);
 
         Assert.Equal(expect,result,precision);
     }
@@ -266,7 +266,7 @@ public class CalculatorTest
         Calculator calculator = new();
         double[] numbers = [9.985e307,9.985e307,9.985e307];
         
-        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+        Assert.Throws<OverflowException>(() => calculator.Multi(numbers));
     }
 
     // Calculator.Div()
@@ -300,7 +300,7 @@ public class CalculatorTest
     {
         Calculator calculator = new();        
 
-        int result = calculator.Add(numbers);
+        int result = calculator.Div(numbers);
 
         Assert.Equal(expect,result);        
     }
