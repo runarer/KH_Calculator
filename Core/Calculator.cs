@@ -20,12 +20,12 @@ public class Calculator
 
     public int Add(int[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Add);
     }
 
     public double Add(double[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Add);
     }
 
 
@@ -47,12 +47,12 @@ public class Calculator
 
     public int Sub(int[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Sub);
     }
 
     public double Sub(double[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Sub);
     }
 
     public int Multi(int numberA, int numberB)
@@ -74,12 +74,12 @@ public class Calculator
     
     public int Multi(int[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Multi);
     }
 
     public double Multi(double[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Multi);
     }
 
     public int Div(int numberA, int numberB)
@@ -97,11 +97,11 @@ public class Calculator
     
     public int Div(int[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Div);
     }
 
     public double Div(double[] numbers)
     {
-        throw new NotImplementedException();
+        return numbers.Aggregate(Div);
     }
 }
