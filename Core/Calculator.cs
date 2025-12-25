@@ -18,6 +18,17 @@ public class Calculator
         return result;
     }
 
+    public int Add(int[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
+    public double Add(double[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
+
     public int Sub(int numberA, int numberB)
     {
         checked
@@ -33,6 +44,16 @@ public class Calculator
             throw new OverflowException();
         return result;
     }    
+
+    public int Sub(int[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
+    public double Sub(double[] numbers)
+    {
+        throw new NotImplementedException();
+    }
 
     public int Multi(int numberA, int numberB)
     {
@@ -50,6 +71,17 @@ public class Calculator
         return result;
     }    
 
+    
+    public int Multi(int[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
+    public double Multi(double[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
     public int Div(int numberA, int numberB)
     {
         return (int)Math.Round(Div((double)numberA,(double)numberB),MidpointRounding.AwayFromZero);
@@ -61,5 +93,15 @@ public class Calculator
         if(Double.IsInfinity(result) || Double.IsNaN(result))
             throw new DivideByZeroException();
         return result;
+    }
+    
+    public int Div(int[] numbers)
+    {
+        throw new NotImplementedException();
+    }
+
+    public double Div(double[] numbers)
+    {
+        throw new NotImplementedException();
     }
 }
