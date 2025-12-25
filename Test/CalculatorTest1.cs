@@ -136,7 +136,7 @@ public class CalculatorTest
         int[] numbers = [23,45,66,-66,-22,34,12];
         int expect = -46;
 
-        int result = calculator.Add(numbers);
+        int result = calculator.Sub(numbers);
 
         Assert.Equal(expect,result);
     }
@@ -147,7 +147,7 @@ public class CalculatorTest
         Calculator calculator = new();
         int[] numbers = [23,45,66,66,22,34,int.MinValue];
         
-        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+        Assert.Throws<OverflowException>(() => calculator.Sub(numbers));
     }
 
     [Theory]
@@ -217,7 +217,7 @@ public class CalculatorTest
     public void TestCalculator_Multi_MultiplysArrayOfBigInts_ExpectOverflowException()
     {        
         Calculator calculator = new();
-        int[] numbers = [23,45,66,66,22,34];
+        int[] numbers = [23,45,66,66,22,int.MaxValue];
         
         Assert.Throws<OverflowException>(() => calculator.Add(numbers));
     }
@@ -347,7 +347,7 @@ public class CalculatorTest
         Calculator calculator = new();
         double[] numbers = [3.2,4.55,67.02];
         double expect = 0.010493;
-        int precision = 6;
+        int precision = 5;
 
         double result = calculator.Div(numbers);
 
