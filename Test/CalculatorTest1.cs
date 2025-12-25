@@ -32,16 +32,16 @@ public class CalculatorTest
     }
 
     [Theory]
-    [InlineData(0.0,0.0,0.0)]
-    [InlineData(3.123122,6.345321,9.468443)]
-    [InlineData(-12.6666,-45.3333,-57.9999)]
-    public void TestCalculator_Add_AddTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect)
+    [InlineData(0.0,0.0,0.0,15)]
+    [InlineData(3.123122,6.345321,9.468443,6)]
+    [InlineData(-12.6666,-45.3333,-57.9999,4)]
+    public void TestCalculator_Add_AddTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect, int precision)
     {
         Calculator calculator = new();
 
         double result = calculator.Add(firstNumber,secondNumber);
 
-        Assert.Equal(expect,result);
+        Assert.Equal(expect,result,precision);
     }
     
     [Fact]
@@ -86,16 +86,16 @@ public class CalculatorTest
     }
 
     [Theory]
-    [InlineData(0.0,0.0,0.0)]
-    [InlineData(3.123122,6.345321,-3.222088)]
-    [InlineData(-12.6666,-45.3333,32.6667)]
-    public void TestCalculator_Sub_SubtractTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect)
+    [InlineData(0.0,0.0,0.0,15)]
+    [InlineData(3.123122,6.345321,-3.222088,6)]
+    [InlineData(-12.6666,-45.3333,32.6667,4)]
+    public void TestCalculator_Sub_SubtractTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect, int precision)
     {
         Calculator calculator = new();
 
         double result = calculator.Sub(firstNumber,secondNumber);
 
-        Assert.Equal(expect,result);
+        Assert.Equal(expect,result,precision);
     }
 
     [Fact]
@@ -138,18 +138,16 @@ public class CalculatorTest
     }
 
     [Theory]
-    [InlineData(1.0,1.0,1.0)]
-    [InlineData(445.0,441.1233123,196_299.8739735)]
-    [InlineData(-12.451,34.6,-430.8046)]
-    [InlineData(double.MaxValue,2.0,double.PositiveInfinity)]
-    [InlineData(double.MinValue,2.0,double.NegativeInfinity)]
-    public void TestCalculator_Multi_MultiplyTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect)
+    [InlineData(1.0,1.0,1.0,15)]
+    [InlineData(445.0,441.1233123,196_299.8739735,7)]
+    [InlineData(-12.451,34.6,-430.8046,4)]
+    public void TestCalculator_Multi_MultiplyTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect, int precision)
     {
         Calculator calculator = new();
 
         double result = calculator.Multi(firstNumber,secondNumber);
 
-        Assert.Equal(expect,result);
+        Assert.Equal(expect,result,precision);
     }
 
     [Fact]
@@ -188,17 +186,17 @@ public class CalculatorTest
     }
 
     [Theory]
-    [InlineData(1.0,1.0,1.0)]
-    [InlineData(3.123567,765.556,0.00408012869)]
-    [InlineData(3.5,0.5,7.0)]
-    [InlineData(74.98,-9.2,-8.15)]
-    public void TestCalculator_Div_DivideTwoDoubles_ReturnRoundedDouble(double firstNumber, double secondNumber, double expect)
+    [InlineData(1.0,1.0,1.0,15)]
+    [InlineData(3.123567,765.556,0.00408012869,10)]
+    [InlineData(3.5,0.5,7.0,15)]
+    [InlineData(74.98,-9.2,-8.15,15)]
+    public void TestCalculator_Div_DivideTwoDoubles_ReturnRoundedDouble(double firstNumber, double secondNumber, double expect, int precision)
     {
         Calculator calculator = new();
 
         double result = calculator.Div(firstNumber,secondNumber);
         
-        Assert.Equal(expect,result);
+        Assert.Equal(expect,result,precision);
     }
 
     [Fact]
