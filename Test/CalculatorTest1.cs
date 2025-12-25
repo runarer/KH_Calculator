@@ -43,7 +43,7 @@ public class CalculatorTest
         Assert.Equal(expect,result);
     }
 
-        [Fact]
+    [Fact]
     public void TestCalculator_Add_AddsArrayOfBigInts_ExpectOverflowException()
     {        
         Calculator calculator = new();
@@ -129,6 +129,27 @@ public class CalculatorTest
         Assert.Throws<OverflowException>(() => calculator.Sub(minInt,createNegativeOverflow));
     }
 
+    [Fact]
+    public void TestCalculator_Sub_SubtractsArrayOfInts_ReturnInt()
+    {
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,-66,-22,34,12];
+        int expect = -46;
+
+        int result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result);
+    }
+
+    [Fact]
+    public void TestCalculator_Sub_SubtractsArrayOfBigInts_ExpectOverflowException()
+    {        
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,66,22,34,int.MinValue];
+        
+        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+    }
+
     [Theory]
     [InlineData(0.0,0.0,0.0,15)]
     [InlineData(3.123122,6.345321,-3.222088,3)]
@@ -155,7 +176,6 @@ public class CalculatorTest
         Assert.Throws<OverflowException>(() => calculator.Sub(minDouble,createNegativeOverflow));
     }
 
-
     // Calculator.Multi()
     [Theory]
     [InlineData(1,1,1)]
@@ -181,6 +201,28 @@ public class CalculatorTest
         Assert.Throws<OverflowException>(() => calculator.Multi(minInt,minInt));
     }
 
+    [Fact]
+    public void TestCalculator_Multi_MultiplysArrayOfInts_ReturnInt()
+    {
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,66,22];
+        int expect = 99_186_120;
+
+        int result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result);
+    }
+
+    [Fact]
+    public void TestCalculator_Multi_MultiplysArrayOfBigInts_ExpectOverflowException()
+    {        
+        Calculator calculator = new();
+        int[] numbers = [23,45,66,66,22,34];
+        
+        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+    }
+
+
     [Theory]
     [InlineData(1.0,1.0,1.0,15)]
     [InlineData(445.0,441.1233123,196_299.8739735,7)]
@@ -205,6 +247,28 @@ public class CalculatorTest
         Assert.Throws<OverflowException>(() => calculator.Multi(minDouble,minDouble));
     }
 
+    [Fact]
+    public void TestCalculator_Multi_MultiplyArrayOfDoubles_ReturnDouble()
+    {
+        Calculator calculator = new();
+        double[] numbers = [66.45663,22.44321,34.98764];
+        double expect = 52_184.06866;
+        int precision = 5;
+
+        double result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result,precision);
+    }
+
+    [Fact]
+    public void TestCalculator_Multi_MultiplyArrayOfBigDoubles_ExpectOverflowException()
+    {        
+        Calculator calculator = new();
+        double[] numbers = [9.985e307,9.985e307,9.985e307];
+        
+        Assert.Throws<OverflowException>(() => calculator.Add(numbers));
+    }
+
     // Calculator.Div()
     [Theory]
     [InlineData(1,1,1)]
@@ -227,6 +291,27 @@ public class CalculatorTest
         int number = 123;
                 
         Assert.Throws<DivideByZeroException>(() => calculator.Div(number,0));
+    }
+    
+    [Theory]
+    [InlineData((int[])[15,3,1,2],3)]
+    [InlineData((int[])[15,3,1,4],1)]
+    public void TestCalculator_Div_DividesArrayOfInts_ReturnInt(int[] numbers, int expect)
+    {
+        Calculator calculator = new();        
+
+        int result = calculator.Add(numbers);
+
+        Assert.Equal(expect,result);        
+    }
+
+    [Fact]
+    public void TestCalculator_Div_DivideArrayOfIntWithAZeroInside_ExpectDivideByZeroException()
+    {   
+        Calculator calculator = new();
+        int[] numbers = [2,3,4,0];
+                
+        Assert.Throws<DivideByZeroException>(() => calculator.Div(numbers));
     }
 
     [Theory]
@@ -254,6 +339,28 @@ public class CalculatorTest
         Assert.Throws<DivideByZeroException>(() => calculator.Div(positiveNumber,zero));
         Assert.Throws<DivideByZeroException>(() => calculator.Div(negativeNumber,zero));
         Assert.Throws<DivideByZeroException>(() => calculator.Div(zero,zero));
+    }
+
+    [Fact]
+    public void TestCalculator_Div_DividesArrayOfDoubles_ReturnDouble()
+    {
+        Calculator calculator = new();
+        double[] numbers = [3.2,4.55,67.02];
+        double expect = 0.010493;
+        int precision = 6;
+
+        double result = calculator.Div(numbers);
+
+        Assert.Equal(expect,result,precision);
+    }
+
+    [Fact]
+    public void TestCalculator_Div_DivideArrayOfDoubleWithAZeroInside_ExpectDivideByZeroException()
+    {   
+        Calculator calculator = new();
+        double[] numbers = [2.2,3.4,4.4,0.0];
+                
+        Assert.Throws<DivideByZeroException>(() => calculator.Div(numbers));
     }
 
 }
