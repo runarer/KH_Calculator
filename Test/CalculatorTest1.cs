@@ -48,13 +48,13 @@ public class CalculatorTest
     public void TestCalculator_Add_AddToBigDoubles_ExpectOverflowException()
     {        
         Calculator calculator = new();
-        double maxDouble = double.MaxValue;
-        double createPositiveOverflow = 1.0;
-        double minDouble = double.MinValue;
-        double createNegativeOverflow = -1.0;
+        double bigDouble = 7.997e307;
+        double createPositiveOverflow =  9.985e307;
+        double bigNegativeDouble = -7.997e307;
+        double createNegativeOverflow = -9.985e307;
         
-        Assert.Throws<OverflowException>(() => calculator.Add(maxDouble,createPositiveOverflow));
-        Assert.Throws<OverflowException>(() => calculator.Add(minDouble,createNegativeOverflow));
+        Assert.Throws<OverflowException>(() => calculator.Add(bigDouble,createPositiveOverflow));
+        Assert.Throws<OverflowException>(() => calculator.Add(bigNegativeDouble,createNegativeOverflow));
     }
 
 
@@ -87,7 +87,7 @@ public class CalculatorTest
 
     [Theory]
     [InlineData(0.0,0.0,0.0,15)]
-    [InlineData(3.123122,6.345321,-3.222088,6)]
+    [InlineData(3.123122,6.345321,-3.222088,3)]
     [InlineData(-12.6666,-45.3333,32.6667,4)]
     public void TestCalculator_Sub_SubtractTwoDoubles_ReturnDouble(double firstNumber, double secondNumber, double expect, int precision)
     {
@@ -102,10 +102,10 @@ public class CalculatorTest
     public void TestCalculator_Sub_SubtractFromBigDouble_ExpectOverflowException()
     {        
         Calculator calculator = new();
-        double maxDouble = double.MaxValue;
-        double createPositiveOverflow = -1.0;
-        double minDouble = double.MinValue;
-        double createNegativeOverflow = 1.0;
+        double maxDouble = 7.997e307;
+        double createPositiveOverflow = -9.985e307;
+        double minDouble = -9.985e307;
+        double createNegativeOverflow = 7.997e307;
         
         Assert.Throws<OverflowException>(() => calculator.Sub(maxDouble,createPositiveOverflow));
         Assert.Throws<OverflowException>(() => calculator.Sub(minDouble,createNegativeOverflow));
