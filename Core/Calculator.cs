@@ -52,7 +52,7 @@ public class Calculator
 
     public int Div(int numberA, int numberB)
     {
-        return numberA / numberB;
+        return (int)Math.Round(Div((double)numberA,(double)numberB),MidpointRounding.AwayFromZero);
     }
 
     public double Div(double numberA, double numberB)
