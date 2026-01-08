@@ -2,7 +2,7 @@
 using System.Globalization;
 using Spectre.Console;
 
-string[] choices  = [..Enum.GetValues<Choice>().Select( c => c.ToString())];
+string[] choices = Enum.GetNames<Choice>();
 
 while (true) {
     //Show menu
