@@ -17,10 +17,10 @@ dotnet add App reference Core
 dotnet add Test reference Core
 ```
 
-## Prosess
+## Process
 
 1. Create solution and project -> OK
 2. Create the tests based on the design -> OK
 3. Run tests to make sure they fail -> OK
-4. Implement Core until it passes all tests.
+4. Implement Core until it passes all tests. -> OK
 5. Implement a frontend
