@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using KH_Kalkulator;
 using Spectre.Console;
 
 string[] choices = Enum.GetNames<Choice>();
@@ -39,12 +40,48 @@ while (true) {
             }
 
             return ValidationResult.Success();
-        });
+        });    
+    string result = AnsiConsole.Prompt(inputPrompt);
+
+
+    // Convert to numbers
+    string[] numbersRaw = result.Split(' ',StringSplitOptions.RemoveEmptyEntries);
+
+    int[] integerNumbers = new int[numbersRaw.Length];
+    double[] desimalNumbers = new double[numbersRaw.Length];
+    bool integers = true;
+    bool toBig = false;
+
+    for(int i =0;i < numbersRaw.Length; i++) {
+        try {
+            integerNumbers[i] = int.Parse(numbersRaw[i]);
+        } 
+        catch (FormatException)
+        {
+            integers = false;
+            break;
+        } 
+        catch (OverflowException)
+        {
+            AnsiConsole.MarkupLine($"[red]A number[/] {numbersRaw[i]} [red]is to big[/]");
+            toBig = true;
+            break;
+        }
+    }
+    if(toBig)
+        continue;
+
+    // Numbers are allready validated to be parseable to double.
+    if(!integers)
+        desimalNumbers = Array.ConvertAll(numbersRaw,double.Parse);
+
     
-    var result = AnsiConsole.Prompt(inputPrompt);
+
+    // Do the calculation
 
 
 }
+
 
 
 
