@@ -78,6 +78,8 @@ while (true) {
     
 
     // Do the calculation
+    string answer = integers ?  Calculators.Calculate(integerNumbers,choice) : 
+                                Calculators.Calculate(desimalNumbers,choice) ; 
 
 
 }
@@ -86,26 +88,10 @@ while (true) {
 
 
 
-string CalculateInts(int[] numbers,Choice operation) => operation switch
-{
-    Choice.Addition => Calculator.Add(numbers).ToString(),
-    Choice.Subtraction => Calculator.Sub(numbers).ToString(),
-    Choice.Multiplication => Calculator.Multi(numbers).ToString(),
-    Choice.Division => Calculator.Div(numbers).ToString(), 
-    _ => throw new NotImplementedException(),
-};
-
-string CalculateDoubles(double[] numbers,Choice operation) => operation switch
-{
-    Choice.Addition => Calculator.Add(numbers).ToString(),
-    Choice.Subtraction => Calculator.Sub(numbers).ToString(),
-    Choice.Multiplication => Calculator.Multi(numbers).ToString(),
-    Choice.Division => Calculator.Div(numbers).ToString(), 
-    _ => throw new NotImplementedException(),
-};
 
 
-enum Choice
+
+public enum Choice
 {
     Addition,
     Subtraction, 
@@ -114,3 +100,24 @@ enum Choice
     Exit,
 }
 
+
+public static class Calculators
+{
+    public static string Calculate(int[] numbers,Choice operation) => operation switch
+    {
+        Choice.Addition => Calculator.Add(numbers).ToString(),
+        Choice.Subtraction => Calculator.Sub(numbers).ToString(),
+        Choice.Multiplication => Calculator.Multi(numbers).ToString(),
+        Choice.Division => Calculator.Div(numbers).ToString(), 
+        _ => throw new NotImplementedException(),
+    };
+
+    public static string Calculate(double[] numbers,Choice operation) => operation switch
+    {
+        Choice.Addition => Calculator.Add(numbers).ToString(),
+        Choice.Subtraction => Calculator.Sub(numbers).ToString(),
+        Choice.Multiplication => Calculator.Multi(numbers).ToString(),
+        Choice.Division => Calculator.Div(numbers).ToString(), 
+        _ => throw new NotImplementedException(),
+    };
+}
