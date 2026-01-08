@@ -19,6 +19,13 @@ while (true) {
     var inputPrompt = new TextPrompt<string>("Enter numbers (separeted by [yellow]space[/]):")
         .Validate( line =>
         {
+            string[] numbersRaw = line.Split(' ',StringSplitOptions.RemoveEmptyEntries);
+            
+            if(numbersRaw.Length < 2)
+            {
+                return ValidationResult.Error("[red]You must enter atleast two numbers![/]");
+            }
+
             return ValidationResult.Success();
         });
     
