@@ -3,13 +3,24 @@
 string[] choices = ["Addition", "Subtraction", "Multiplication","Division","Exit"];
 
 while (true) {
+    //Show menu
     string choice = AnsiConsole.Prompt( new SelectionPrompt<string>()
-        .Title("Please select action (up and down, enter to select)")
+        .Title("Please select action ([yellow]up[/] and [yellow]down[/], [yellow]enter[/] to select)")
         .AddChoices(choices)
     );
 
+    // Exit?
     if(choice == choices[^1])
         break;
 
+    // Ask user to input numbers
+    // string numbersRaw = AnsiConsole.Ask<string>("Enter numbers (separeted by [yellow]space[/]):");
 
+    var inputPrompt = new TextPrompt<string>("Enter numbers (separeted by [yellow]space[/]):")
+        .Validate( line =>
+        {
+            return ValidationResult.Success();
+        });
+    
+    var result = AnsiConsole.Prompt(inputPrompt);
 }
