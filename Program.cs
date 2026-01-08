@@ -86,6 +86,25 @@ while (true) {
 
 
 
+string CalculateInts(int[] numbers,Choice operation) => operation switch
+{
+    Choice.Addition => Calculator.Add(numbers).ToString(),
+    Choice.Subtraction => Calculator.Sub(numbers).ToString(),
+    Choice.Multiplication => Calculator.Multi(numbers).ToString(),
+    Choice.Division => Calculator.Div(numbers).ToString(), 
+    _ => throw new NotImplementedException(),
+};
+
+string CalculateDoubles(double[] numbers,Choice operation) => operation switch
+{
+    Choice.Addition => Calculator.Add(numbers).ToString(),
+    Choice.Subtraction => Calculator.Sub(numbers).ToString(),
+    Choice.Multiplication => Calculator.Multi(numbers).ToString(),
+    Choice.Division => Calculator.Div(numbers).ToString(), 
+    _ => throw new NotImplementedException(),
+};
+
+
 enum Choice
 {
     Addition,
