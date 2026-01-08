@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using System.Globalization;
+using Spectre.Console;
 
 string[] choices = ["Addition", "Subtraction", "Multiplication","Division","Exit"];
 
@@ -13,10 +14,11 @@ while (true) {
     if(choice == choices[^1])
         break;
 
-    // Ask user to input numbers
-    // string numbersRaw = AnsiConsole.Ask<string>("Enter numbers (separeted by [yellow]space[/]):");
+    //Get correct desimal seperator
+    string decimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
 
-    var inputPrompt = new TextPrompt<string>("Enter numbers (separeted by [yellow]space[/]):")
+    // Ask user to input numbers, and validates answer
+    var inputPrompt = new TextPrompt<string>($"Enter numbers (separeted by [yellow]space[/], use [yellow]{decimalSeparator}[/] for decimals):")
         .Validate( line =>
         {
             string[] numbersRaw = line.Split(' ',StringSplitOptions.RemoveEmptyEntries);
