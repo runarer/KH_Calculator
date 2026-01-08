@@ -2,16 +2,17 @@
 using System.Globalization;
 using Spectre.Console;
 
-string[] cs  = [..Enum.GetValues<Choice>().Select( c => c.ToString())];
+string[] choices  = [..Enum.GetValues<Choice>().Select( c => c.ToString())];
 
 while (true) {
     //Show menu
     string choiceInput = AnsiConsole.Prompt( new SelectionPrompt<string>()
         .Title("Please select action ([yellow]up[/] and [yellow]down[/], [yellow]enter[/] to select)")
-        .AddChoices(cs)
+        .AddChoices(choices)
     );
 
-    _ = Enum.TryParse(choiceInput, out Choice choice);
+    // _ = Enum.TryParse(choiceInput, out Choice choice);
+    Choice choice = Enum.Parse<Choice>(choiceInput);
 
     // Exit?
     if(choice == Choice.Exit)
@@ -44,6 +45,10 @@ while (true) {
 
 
 }
+
+
+
+
 enum Choice
 {
     Addition,
