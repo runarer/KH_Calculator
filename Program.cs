@@ -28,6 +28,12 @@ while (true) {
                 return ValidationResult.Error("[red]You must enter atleast two numbers![/]");
             }
 
+            foreach (var number in numbersRaw)
+            {
+                if (!double.TryParse(number, out double _))
+                    return ValidationResult.Error($"[red]Can't convert {number} to a number![/]");
+            }
+
             return ValidationResult.Success();
         });
     
