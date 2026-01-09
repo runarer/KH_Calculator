@@ -63,6 +63,8 @@ while (true) {
     string answer = integers ?  Calculators.Calculate(integerNumbers,choice) : 
                                 Calculators.Calculate(desimalNumbers,choice) ; 
 
+    AnsiConsole.MarkupLineInterpolated($"{choice} on {result} = [green]{answer}[/]");
+    Console.ReadKey();
 
 }
 
