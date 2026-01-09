@@ -12,7 +12,7 @@ while (true) {
         .AddChoices(choices)
     );
 
-    // _ = Enum.TryParse(choiceInput, out Choice choice);
+    // Turn input into a enum
     Choice choice = Enum.Parse<Choice>(choiceInput);
 
     // Exit?
@@ -50,6 +50,7 @@ while (true) {
     int[] integerNumbers = new int[numbersRaw.Length];
     double[] desimalNumbers = new double[numbersRaw.Length];
     
+    // Try to convert all numbes to int.
     int index = 0;
     bool integers =  numbersRaw.All(number => int.TryParse(number,out integerNumbers[index++]));
 
@@ -57,6 +58,8 @@ while (true) {
     if(!integers)
         desimalNumbers = Array.ConvertAll(numbersRaw,double.Parse);
 
+
+    
     
 
     // Do the calculation
