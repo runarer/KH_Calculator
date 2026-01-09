@@ -1,6 +1,5 @@
 ﻿
 using System.Globalization;
-using System.Security.Cryptography;
 using Core;
 using Spectre.Console;
 
