@@ -60,29 +60,35 @@ while (true) {
         desimalNumbers = Array.ConvertAll(numbersRaw,double.Parse);
 
     string answer = string.Empty;
-    switch (choice)
+    try
     {
-        case Choice.Addition : 
-            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
-                                : Calculator.Add(desimalNumbers).ToString();  
-            break;
-        case Choice.Subtraction :
-            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
-                                : Calculator.Add(desimalNumbers).ToString();  
-            break;
-        case Choice.Division : 
-            try {
+        switch (choice)
+        {
+            case Choice.Addition : 
                 answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
-                                    : Calculator.Add(desimalNumbers).ToString();
-            } catch (DivideByZeroException)
-            {
-                answer = "NaN";
-            }
-            break;
-        case Choice.Multiplication : 
-            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
-                                : Calculator.Add(desimalNumbers).ToString();  
-            break;
+                                    : Calculator.Add(desimalNumbers).ToString();  
+                break;
+            case Choice.Subtraction :
+                answer =  integers  ? Calculator.Sub(integerNumbers).ToString() 
+                                    : Calculator.Sub(desimalNumbers).ToString();  
+                break;
+            case Choice.Division : 
+                try {
+                    answer =  integers  ? Calculator.Div(integerNumbers).ToString() 
+                                        : Calculator.Div(desimalNumbers).ToString();
+                } catch (DivideByZeroException)
+                {
+                    answer = "NaN";
+                }
+                break;
+            case Choice.Multiplication : 
+                answer =  integers  ? Calculator.Multi(integerNumbers).ToString() 
+                                    : Calculator.Multi(desimalNumbers).ToString();  
+                break;
+        }
+    } catch (OverflowException)
+    {
+        answer = "Overflow (to big)";
     }
 
 
