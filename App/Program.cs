@@ -1,5 +1,6 @@
 ﻿
 using System.Globalization;
+using System.Security.Cryptography;
 using Core;
 using Spectre.Console;
 
@@ -58,25 +59,37 @@ while (true) {
     if(!integers)
         desimalNumbers = Array.ConvertAll(numbersRaw,double.Parse);
 
+    string answer = string.Empty;
+    switch (choice)
+    {
+        case Choice.Addition : 
+            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
+                                : Calculator.Add(desimalNumbers).ToString();  
+            break;
+        case Choice.Subtraction :
+            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
+                                : Calculator.Add(desimalNumbers).ToString();  
+            break;
+        case Choice.Division : 
+            try {
+                answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
+                                    : Calculator.Add(desimalNumbers).ToString();
+            } catch (DivideByZeroException)
+            {
+                answer = "NaN";
+            }
+            break;
+        case Choice.Multiplication : 
+            answer =  integers  ? Calculator.Add(integerNumbers).ToString() 
+                                : Calculator.Add(desimalNumbers).ToString();  
+            break;
+    }
 
-    
-    
-
-    // Do the calculation
-    string answer = integers ?  Calculators.Calculate(integerNumbers,choice) : 
-                                Calculators.Calculate(desimalNumbers,choice) ; 
 
     AnsiConsole.MarkupLineInterpolated($"{choice} on {result} = [green]{answer}[/]");
     Console.ReadKey();
 
 }
-
-
-
-
-
-
-
 
 public enum Choice
 {
@@ -85,26 +98,4 @@ public enum Choice
     Multiplication,
     Division,
     Exit,
-}
-
-
-public static class Calculators
-{
-    public static string Calculate(int[] numbers,Choice operation) => operation switch
-    {
-        Choice.Addition => Calculator.Add(numbers).ToString(),
-        Choice.Subtraction => Calculator.Sub(numbers).ToString(),
-        Choice.Multiplication => Calculator.Multi(numbers).ToString(),
-        Choice.Division => Calculator.Div(numbers).ToString(), 
-        _ => throw new NotImplementedException(),
-    };
-
-    public static string Calculate(double[] numbers,Choice operation) => operation switch
-    {
-        Choice.Addition => Calculator.Add(numbers).ToString(),
-        Choice.Subtraction => Calculator.Sub(numbers).ToString(),
-        Choice.Multiplication => Calculator.Multi(numbers).ToString(),
-        Choice.Division => Calculator.Div(numbers).ToString(), 
-        _ => throw new NotImplementedException(),
-    };
 }
