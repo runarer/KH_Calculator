@@ -1,8 +1,8 @@
 ﻿namespace Core;
 
-public class Calculator
+public static class Calculator
 {
-    public int Add(int numberA, int numberB)
+    public static int Add(int numberA, int numberB)
     {
         checked
         {
@@ -10,7 +10,7 @@ public class Calculator
         }
     }
 
-    public double Add(double numberA, double numberB)
+    public static double Add(double numberA, double numberB)
     {
         double result = numberA + numberB;
         if(Double.IsInfinity(result)) 
@@ -18,18 +18,7 @@ public class Calculator
         return result;
     }
 
-    public int Add(int[] numbers)
-    {
-        return numbers.Aggregate(Add);
-    }
-
-    public double Add(double[] numbers)
-    {
-        return numbers.Aggregate(Add);
-    }
-
-
-    public int Sub(int numberA, int numberB)
+    public static int Sub(int numberA, int numberB)
     {
         checked
         {
@@ -37,7 +26,7 @@ public class Calculator
         }
     }
 
-    public double Sub(double numberA, double numberB)
+    public static double Sub(double numberA, double numberB)
     {
         double result = numberA - numberB;
         if(Double.IsInfinity(result)) 
@@ -45,17 +34,8 @@ public class Calculator
         return result;
     }    
 
-    public int Sub(int[] numbers)
-    {
-        return numbers.Aggregate(Sub);
-    }
 
-    public double Sub(double[] numbers)
-    {
-        return numbers.Aggregate(Sub);
-    }
-
-    public int Multi(int numberA, int numberB)
+    public static int Multi(int numberA, int numberB)
     {
         checked
         {
@@ -63,7 +43,7 @@ public class Calculator
         }
     }
 
-    public double Multi(double numberA, double numberB)
+    public static double Multi(double numberA, double numberB)
     {
         double result = numberA * numberB;
         if(Double.IsInfinity(result)) 
@@ -71,37 +51,33 @@ public class Calculator
         return result;
     }    
 
-    
-    public int Multi(int[] numbers)
-    {
-        return numbers.Aggregate(Multi);
-    }
 
-    public double Multi(double[] numbers)
-    {
-        return numbers.Aggregate(Multi);
-    }
-
-    public int Div(int numberA, int numberB)
+    public static int Div(int numberA, int numberB)
     {
         return (int)Math.Round(Div((double)numberA,(double)numberB),MidpointRounding.AwayFromZero);
     }
 
-    public double Div(double numberA, double numberB)
+    public static double Div(double numberA, double numberB)
     {
         double result = numberA / numberB;
         if(Double.IsInfinity(result) || Double.IsNaN(result))
             throw new DivideByZeroException();
         return result;
     }
-    
-    public int Div(int[] numbers)
-    {
-        return numbers.Aggregate(Div);
-    }
 
-    public double Div(double[] numbers)
-    {
-        return numbers.Aggregate(Div);
-    }
+    public static int Add(int[] numbers) => numbers.Aggregate( Add );
+ 
+    public static int Sub(int[] numbers) => numbers.Aggregate( Sub );
+
+    public static int Div(int[] numbers) => numbers.Aggregate( Div );
+
+    public static int Multi(int[] numbers) => numbers.Aggregate( Multi );
+
+    public static double Add(double[] numbers) => numbers.Aggregate( Add );
+
+    public static double Sub(double[] numbers) => numbers.Aggregate( Sub );
+
+    public static double Div(double[] numbers) => numbers.Aggregate( Div );
+
+    public static double Multi(double[] numbers) => numbers.Aggregate( Multi );
 }

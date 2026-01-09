@@ -1,6 +1,6 @@
 ﻿
 using System.Globalization;
-using KH_Kalkulator;
+using Core;
 using Spectre.Console;
 
 string[] choices = Enum.GetNames<Choice>();
