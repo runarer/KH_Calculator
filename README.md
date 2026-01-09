@@ -7,7 +7,7 @@ Programmet kjøres fra App katalogen med 'dotnet run'.
 Core inneholder selve kalkulatoren
 
 ## Tester
-Katalogen Test inneholder en prosjekt med tester for Core.
+Katalogen Test inneholder et prosjekt med tester for Core.
 
 ## Flow
 ![Flowchart for the program](./KH_Calculator-flow.png)
